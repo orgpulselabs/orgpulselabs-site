@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrgPulse Labs</title>
+  <meta name="description" content="OrgPulse Labs builds practical Salesforce solutions for visibility, administration, and cleaner organizational data." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a31;
+      --soft: #1a2545;
+      --text: #f4f7fb;
+      --muted: #b5c0d8;
+      --accent: #7cc7ff;
+      --accent-2: #8ef0d1;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,199,255,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(142,240,209,0.10), transparent 25%),
+        linear-gradient(180deg, #0b1020 0%, #0d1327 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11,16,32,0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--accent-2);
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: 180ms ease;
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #99d7ff);
+      color: #0a1325;
+      border-color: transparent;
+      box-shadow: var(--shadow);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.98;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 24px;
+    }
+
+    .mini-stat {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-tile {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mini-tile strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: var(--accent-2);
+    }
+
+    section {
+      padding: 24px 0 56px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-copy {
+      margin: 0 0 28px;
+      color: var(--muted);
+      max-width: 740px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 24px;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    ul.clean {
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    ul.clean li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    ul.clean li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    .cta {
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 22px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .split,
+      .cta {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Org<span>Pulse</span> Labs</a>
+      <nav class="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Practical Salesforce solutions for real admin problems</div>
+          <h1>Clean visibility.<br />Smarter admin tools.<br />Built to ship.</h1>
+          <p class="lead">
+            OrgPulse Labs creates focused software for Salesforce teams that need better organizational visibility, cleaner setup experiences, and tools that solve real operational pain points.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Get in touch</a>
+            <a class="btn secondary" href="#solutions">View solutions</a>
+          </div>
+        </div>
+
+        <div class="card hero-card">
+          <h3 style="margin-top:0; font-size:1.25rem;">Now building</h3>
+          <p style="color: var(--muted); margin-bottom: 0;">
+            OrgChartExplorer — a Salesforce app designed to help teams visualize reporting structures, navigate hierarchy data, and improve administrative clarity.
+          </p>
+          <div class="mini-stat">
+            <div class="mini-tile">
+              <strong>Salesforce-first</strong>
+              Built for admins, analysts, and operations teams.
+            </div>
+            <div class="mini-tile">
+              <strong>Clean UX</strong>
+              Focused on installability, usability, and admin trust.
+            </div>
+            <div class="mini-tile">
+              <strong>Fast setup</strong>
+              Designed to be practical, not bloated.
+            </div>
+            <div class="mini-tile">
+              <strong>Real use cases</strong>
+              Shaped by day-to-day platform work.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="container">
+        <h2 class="section-title">What we’re focused on</h2>
+        <p class="section-copy">
+          We build targeted products that improve how organizations understand people, structure, and administrative configuration inside Salesforce.
+        </p>
+        <div class="grid-3">
+          <div class="card feature">
+            <h3>Org visibility</h3>
+            <p>Tools that make hierarchies easier to understand, navigate, and maintain across departments and teams.</p>
+          </div>
+          <div class="card feature">
+            <h3>Admin efficiency</h3>
+            <p>Software aimed at reducing manual effort, confusion, and repetitive tasks for Salesforce admins.</p>
+          </div>
+          <div class="card feature">
+            <h3>Operational clarity</h3>
+            <p>Simple interfaces and guided setup experiences that help teams trust the data and move faster.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container split">
+        <div class="card panel">
+          <h2 class="section-title" style="font-size: 1.9rem; margin-top:0;">About OrgPulse Labs</h2>
+          <p class="section-copy" style="margin-bottom: 0;">
+            OrgPulse Labs is focused on building sharp, useful software for Salesforce environments — especially where org structure, permissions, user setup, and administrative visibility tend to get messy.
+          </p>
+        </div>
+        <div class="card panel">
+          <h3 style="margin-top:0; font-size:1.15rem;">Current priorities</h3>
+          <ul class="clean">
+            <li>Launch a polished AppExchange-ready product experience</li>
+            <li>Keep the footprint lightweight and admin-friendly</li>
+            <li>Build products grounded in real platform operations</li>
+            <li>Create software that saves time without adding complexity</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="card cta">
+          <div>
+            <h2 style="margin:0; font-size:1.9rem;">Want to connect?</h2>
+            <p>Questions, early interest, or partnership inquiries — reach out and we’ll point you in the right direction.</p>
+          </div>
+          <div>
+            <a class="btn primary" href="mailto:support@orgpulselabs.com">support@orgpulselabs.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 OrgPulse Labs. All rights reserved.</div>
+  </footer>
+</body>
+</html>
