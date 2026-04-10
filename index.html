@@ -397,20 +397,7 @@
 .demo-side .media-label {
   max-width: 95%;
 }
-@media (max-width: 1080px) {
-  .two-col.demo-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
 
-  .demo-side {
-    padding-top: 0;
-  }
-
-  .demo-side .media-shot {
-    aspect-ratio: 16 / 10;
-  }
-}
 
     .video-shell {
       position: relative;
@@ -530,6 +517,18 @@
         justify-self: start;
         max-width: 720px;
       }
+      .two-col.demo-grid {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.demo-side {
+  padding-top: 0;
+}
+
+.demo-side .media-shot {
+  aspect-ratio: 16 / 10;
+}
     }
 
     @media (max-width: 760px) {
