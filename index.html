@@ -374,9 +374,8 @@
       font-size: 0.94rem;
     }
 .two-col.demo-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+  gap: 32px;
   align-items: start;
 }
 
@@ -386,11 +385,13 @@
 }
 
 .demo-side {
-  padding-top: 2px;
+  max-width: 460px;
+  width: 100%;
+  justify-self: end;
 }
 
 .demo-side .media-shot {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
 }
 
 .demo-main .media-label,
@@ -517,13 +518,14 @@
         justify-self: start;
         max-width: 720px;
       }
-      .two-col.demo-grid {
+.two-col.demo-grid {
   grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .demo-side {
-  padding-top: 0;
+  max-width: 720px;
+  justify-self: start;
 }
 
 .demo-side .media-shot {
