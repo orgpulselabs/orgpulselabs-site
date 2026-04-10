@@ -373,6 +373,44 @@
       color: var(--muted);
       font-size: 0.94rem;
     }
+.two-col.demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.demo-main .media-card,
+.demo-side .media-card {
+  padding: 14px;
+}
+
+.demo-side {
+  padding-top: 2px;
+}
+
+.demo-side .media-shot {
+  aspect-ratio: 4 / 3;
+}
+
+.demo-main .media-label,
+.demo-side .media-label {
+  max-width: 95%;
+}
+@media (max-width: 1080px) {
+  .two-col.demo-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .demo-side {
+    padding-top: 0;
+  }
+
+  .demo-side .media-shot {
+    aspect-ratio: 16 / 10;
+  }
+}
 
     .video-shell {
       position: relative;
@@ -620,39 +658,39 @@
     </section>
 
     <section id="demo">
-      <div class="container two-col">
-        <div>
-          <div class="section-head">
-            <div class="section-kicker">Demo</div>
-            <h2 class="section-title">See the product in action</h2>
-            <p class="section-copy">
-              The experience is centered on fast navigation, clean presentation, and keeping surrounding hierarchy context visible while exploring a person or position.
-            </p>
-          </div>
+  <div class="container two-col demo-grid">
+    <div class="demo-main">
+      <div class="section-head">
+        <div class="section-kicker">Demo</div>
+        <h2 class="section-title">See the product in action</h2>
+        <p class="section-copy">
+          The experience is centered on fast navigation, clean presentation, and keeping surrounding hierarchy context visible while exploring a person or position.
+        </p>
+      </div>
 
-          <div class="card media-card">
-            <div class="video-shell">
-              <iframe
-                src="https://www.youtube.com/embed/vjg6dPFB9Po"
-                title="Org Chart Explorer demo video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
-            </div>
-          </div>
-          <p class="media-label">Short product walkthrough inside Salesforce.</p>
-        </div>
-
-        <div>
-          <div class="card media-card">
-            <div class="media-shot">
-              <img src="assets/tree_view.png" alt="Org Chart Explorer showing reports to, focus, direct reports, and additional reporting groups" />
-            </div>
-          </div>
-          <p class="media-label">Explore reporting lines, focus on a node, and keep nearby organizational context visible.</p>
+      <div class="card media-card">
+        <div class="video-shell">
+          <iframe
+            src="https://www.youtube.com/embed/vjg6dPFB9Po"
+            title="Org Chart Explorer demo video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
-    </section>
+      <p class="media-label">Short product walkthrough inside Salesforce.</p>
+    </div>
+
+    <div class="demo-side">
+      <div class="card media-card">
+        <div class="media-shot">
+          <img src="assets/tree_view.png" alt="Org Chart Explorer showing reports to, focus, direct reports, and additional reporting groups" />
+        </div>
+      </div>
+      <p class="media-label">Explore reporting lines, focus on a node, and keep nearby organizational context visible.</p>
+    </div>
+  </div>
+</section>
 
     <section id="features">
       <div class="container">
