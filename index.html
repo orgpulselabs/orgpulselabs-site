@@ -10,19 +10,19 @@
   />
   <style>
     :root {
-      --bg: #081126;
-      --bg-2: #0b1530;
-      --panel: rgba(255,255,255,0.06);
-      --panel-strong: rgba(255,255,255,0.08);
-      --text: #f5f8ff;
-      --muted: #bcc8e0;
-      --muted-2: #90a0c0;
-      --accent: #7cc7ff;
-      --accent-2: #8ef0d1;
-      --line: rgba(255,255,255,0.10);
-      --shadow: 0 24px 80px rgba(0,0,0,0.35);
-      --radius: 24px;
-      --max: 1180px;
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #10213a;
+      --muted: #55657d;
+      --muted-2: #73839b;
+      --line: #dbe3ee;
+      --accent: #1f6fd6;
+      --accent-dark: #174f99;
+      --shadow: 0 18px 50px rgba(16, 33, 58, 0.08);
+      --shadow-soft: 0 10px 24px rgba(16, 33, 58, 0.06);
+      --radius: 20px;
+      --max: 1160px;
     }
 
     * {
@@ -38,10 +38,8 @@
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(124,199,255,0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(142,240,209,0.08), transparent 22%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-      line-height: 1.55;
+        linear-gradient(180deg, #f9fbfe 0%, #f3f7fb 100%);
+      line-height: 1.6;
     }
 
     img {
@@ -62,46 +60,47 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 30;
-      backdrop-filter: blur(14px);
-      background: rgba(8,17,38,0.78);
-      border-bottom: 1px solid var(--line);
+      z-index: 50;
+      background: rgba(247, 249, 252, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(219, 227, 238, 0.9);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
       padding: 16px 0;
     }
 
     .brand {
       display: inline-flex;
-      align-items: center;
+      align-items: baseline;
       gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.01em;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
-    .brand img {
-      height: 38px;
-      width: auto;
-      filter: drop-shadow(0 10px 24px rgba(124,199,255,0.18));
+    .brand-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--line);
+      flex: 0 0 auto;
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-    }
-
-    .brand-text small {
-      color: var(--muted-2);
+    .brand-product {
+      font-size: 0.94rem;
+      color: var(--muted);
       font-weight: 600;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -109,7 +108,8 @@
       align-items: center;
       gap: 24px;
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
     .nav-links a:hover {
@@ -117,78 +117,82 @@
     }
 
     .nav-cta {
-      padding: 10px 14px;
-      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      font-weight: 600;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    main {
+      overflow: hidden;
     }
 
     .hero {
-      padding: 76px 0 44px;
+      padding: 72px 0 56px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 32px;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
+      gap: 40px;
       align-items: center;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
       margin-bottom: 18px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
+      padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: var(--accent-2);
-      font-size: 0.86rem;
-      font-weight: 600;
-    }
-
-    .hero-logo {
-      height: 72px;
-      width: auto;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 16px 36px rgba(124,199,255,0.20));
+      background: #eaf2fd;
+      color: var(--accent-dark);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
     }
 
     h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.5rem, 5vw, 4.9rem);
-      line-height: 0.98;
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 3.2vw, 3.1rem);
+      line-height: 1.08;
       letter-spacing: -0.04em;
-      max-width: 760px;
+      max-width: 680px;
     }
 
     .lead {
-      font-size: 1.08rem;
+      margin: 0 0 26px;
+      max-width: 680px;
+      font-size: 1.04rem;
       color: var(--muted);
-      max-width: 700px;
-      margin: 0 0 28px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 22px;
+      margin-bottom: 28px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-radius: 14px;
+      padding: 13px 18px;
+      border-radius: 12px;
       border: 1px solid var(--line);
       font-weight: 700;
-      transition: 180ms ease;
+      transition: 160ms ease;
     }
 
     .btn:hover {
@@ -196,77 +200,101 @@
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, var(--accent), #99d7ff);
-      color: #081126;
-      border-color: transparent;
-      box-shadow: var(--shadow);
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn.primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
     }
 
     .btn.secondary {
-      background: rgba(255,255,255,0.04);
+      background: #fff;
       color: var(--text);
     }
 
-    .hero-proof {
+    .hero-points {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 720px;
+      gap: 14px;
+      max-width: 760px;
     }
 
-    .proof-tile {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+    .point {
+      padding: 16px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
     }
 
-    .proof-tile strong {
+    .point strong {
       display: block;
-      font-size: 1rem;
-      margin-bottom: 5px;
-      color: var(--accent-2);
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .point span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
     .hero-visual {
-      overflow: hidden;
       padding: 16px;
     }
 
     .hero-visual img {
-      border-radius: 18px;
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      border: 1px solid #e5ebf3;
+      background: #fff;
     }
 
     section {
-      padding: 28px 0 60px;
+      padding: 32px 0 68px;
     }
 
     .section-head {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .section-title {
       margin: 0 0 10px;
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-size: clamp(1.65rem, 2.5vw, 2.35rem);
+      line-height: 1.15;
       letter-spacing: -0.03em;
     }
 
     .section-copy {
       margin: 0;
+      max-width: 760px;
       color: var(--muted);
-      max-width: 780px;
+      font-size: 1rem;
     }
 
-    .pain-grid,
+    .grid-3,
     .feature-grid,
     .gallery-grid,
     .steps-grid {
@@ -274,24 +302,34 @@
       gap: 18px;
     }
 
-    .pain-grid {
+    .grid-3,
+    .feature-grid {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .pain-card,
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .content-card,
     .feature-card,
     .step-card {
       padding: 24px;
     }
 
-    .pain-card h3,
+    .content-card h3,
     .feature-card h3,
     .step-card h3 {
       margin: 0 0 10px;
-      font-size: 1.12rem;
+      font-size: 1.08rem;
+      line-height: 1.3;
     }
 
-    .pain-card p,
+    .content-card p,
     .feature-card p,
     .step-card p {
       margin: 0;
@@ -300,36 +338,37 @@
 
     .two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
       align-items: start;
     }
 
     .media-card {
-      overflow: hidden;
       padding: 14px;
+      overflow: hidden;
     }
 
     .media-card img {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.06);
       width: 100%;
+      border-radius: 14px;
+      border: 1px solid #e5ebf3;
+      background: #fff;
     }
 
     .media-label {
-      margin: 14px 4px 2px;
+      margin: 12px 4px 0;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     .video-shell {
       position: relative;
       width: 100%;
       padding-top: 56.25%;
-      border-radius: 18px;
+      border-radius: 14px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #050b18;
+      background: #dfe7f1;
+      border: 1px solid #e5ebf3;
     }
 
     .video-shell iframe {
@@ -338,10 +377,6 @@
       width: 100%;
       height: 100%;
       border: 0;
-    }
-
-    .feature-grid {
-      grid-template-columns: repeat(3, 1fr);
     }
 
     .feature-card ul {
@@ -355,121 +390,120 @@
 
     .feature-card li {
       position: relative;
-      padding-left: 18px;
+      padding-left: 16px;
     }
 
     .feature-card li::before {
       content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
       position: absolute;
       left: 0;
-      top: 10px;
-    }
-
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .steps-grid {
-      grid-template-columns: repeat(4, 1fr);
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
     .step-number {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: rgba(124,199,255,0.16);
-      color: var(--accent);
-      font-weight: 800;
+      width: 32px;
+      height: 32px;
       margin-bottom: 14px;
+      border-radius: 999px;
+      background: #eaf2fd;
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 0.95rem;
     }
 
     .quote {
-      padding: 32px;
+      padding: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
     .quote p {
       margin: 0;
-      font-size: 1.12rem;
+      font-size: 1.06rem;
       color: var(--text);
     }
 
     .quote strong {
-      color: var(--accent-2);
+      color: var(--text);
     }
 
     .cta {
-      padding: 34px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
+      padding: 30px;
     }
 
     .cta h2 {
       margin: 0 0 8px;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      line-height: 1.15;
       letter-spacing: -0.03em;
     }
 
     .cta p {
       margin: 0;
+      max-width: 700px;
       color: var(--muted);
-      max-width: 680px;
     }
 
     footer {
-      padding: 26px 0 40px;
+      padding: 28px 0 42px;
       color: var(--muted-2);
       font-size: 0.92rem;
     }
 
-    @media (max-width: 1024px) {
-      .hero-grid,
+    @media (max-width: 1080px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
       .two-col,
-      .pain-grid,
+      .grid-3,
       .feature-grid,
       .gallery-grid,
       .steps-grid,
-      .cta {
-        grid-template-columns: 1fr;
-        display: grid;
-      }
-
-      .hero-proof {
+      .cta,
+      .hero-points {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 760px) {
-      .nav-links {
+      .nav {
+        padding: 14px 0;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .brand-divider,
+      .brand-product {
         display: none;
       }
 
       .hero {
-        padding-top: 56px;
+        padding: 54px 0 42px;
       }
 
       h1 {
-        font-size: clamp(2.2rem, 10vw, 3.3rem);
+        font-size: clamp(1.9rem, 8vw, 2.5rem);
+      }
+
+      .lead {
+        font-size: 1rem;
       }
 
       .cta {
-        padding: 26px;
-      }
-
-      .brand img {
-        height: 32px;
-      }
-
-      .hero-logo {
-        height: 58px;
+        padding: 24px;
       }
     }
   </style>
@@ -477,12 +511,10 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top">
-        <img src="assets/logo.png" alt="OrgPulse Labs logo" />
-        <span class="brand-text">
-          <span>OrgPulse Labs</span>
-          <small>Salesforce Product Company</small>
-        </span>
+      <a class="brand" href="#top" aria-label="OrgPulse Labs home">
+        <span class="brand-name">OrgPulse Labs</span>
+        <span class="brand-divider"></span>
+        <span class="brand-product">Org Chart Explorer</span>
       </a>
 
       <nav class="nav-links">
@@ -499,30 +531,29 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Built for Salesforce admins, operations teams, and internal org visibility</div>
-          <img class="hero-logo" src="assets/logo.png" alt="OrgPulse Labs logo" />
-          <h1>Turn Salesforce hierarchy data into a real org chart experience.</h1>
+          <div class="eyebrow">Native Salesforce product for organizational visibility</div>
+          <h1>Org charts in Salesforce, without building your own.</h1>
           <p class="lead">
-            <strong>Org Chart Explorer</strong> helps teams visualize reporting structures, search people and positions, and navigate organizational hierarchy directly inside Salesforce — without building a custom solution from scratch.
+            <strong>Org Chart Explorer</strong> gives teams a clean way to visualize reporting structure, search hierarchy data, and navigate organizational context directly inside Salesforce.
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#demo">Watch Demo</a>
-            <a class="btn secondary" href="#contact">Contact OrgPulse Labs</a>
+            <a class="btn primary" href="#demo">Watch demo</a>
+            <a class="btn secondary" href="#contact">Talk to OrgPulse Labs</a>
           </div>
 
-          <div class="hero-proof">
-            <div class="proof-tile">
-              <strong>Fast setup</strong>
-              Map your hierarchy object and launch without heavy implementation work.
+          <div class="hero-points">
+            <div class="point">
+              <strong>Professional product experience</strong>
+              <span>Give users a real org chart interface instead of spreadsheets, static diagrams, or custom pages.</span>
             </div>
-            <div class="proof-tile">
-              <strong>Native Salesforce UX</strong>
-              Search, explore, validate, and manage hierarchy data in one place.
+            <div class="point">
+              <strong>Admin-friendly setup</strong>
+              <span>Configure your hierarchy object and key display fields without turning this into a long internal project.</span>
             </div>
-            <div class="proof-tile">
-              <strong>Built for real admins</strong>
-              Focused on usability, clean setup, and practical day-to-day value.
+            <div class="point">
+              <strong>Built for Salesforce teams</strong>
+              <span>Designed to feel usable, maintainable, and credible inside the platform your team already works in.</span>
             </div>
           </div>
         </div>
@@ -536,31 +567,32 @@
     <section id="product">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-title">Why Org Chart Explorer exists</h2>
+          <div class="section-kicker">Product</div>
+          <h2 class="section-title">A better way to present organizational structure in Salesforce</h2>
           <p class="section-copy">
-            Most Salesforce orgs were never given a clean, searchable, maintainable org chart experience. Teams end up relying on spreadsheets, static diagrams, incomplete hierarchy data, or custom solutions that are hard to maintain. Org Chart Explorer gives you a polished product experience instead.
+            Many teams already have hierarchy data in Salesforce, but not an experience that makes it easy to explore. Org Chart Explorer turns that data into a product your users can actually navigate and understand.
           </p>
         </div>
 
-        <div class="pain-grid">
-          <div class="card pain-card">
-            <h3>No clean way to visualize structure</h3>
+        <div class="grid-3">
+          <div class="card content-card">
+            <h3>Make hierarchy easier to understand</h3>
             <p>
-              Reporting relationships may exist in Salesforce, but that does not mean people can actually navigate or understand them.
+              Help users see reporting relationships clearly instead of piecing them together from records, lists, and disconnected fields.
             </p>
           </div>
 
-          <div class="card pain-card">
-            <h3>Custom builds take too long</h3>
+          <div class="card content-card">
+            <h3>Avoid a custom-built maintenance burden</h3>
             <p>
-              Internal org chart tools often become one-off projects with brittle configuration, unclear ownership, and limited reuse.
+              Replace the cycle of one-off internal solutions with a packaged product designed to be installed, configured, and used.
             </p>
           </div>
 
-          <div class="card pain-card">
-            <h3>Admins need something practical</h3>
+          <div class="card content-card">
+            <h3>Give admins something practical</h3>
             <p>
-              This product is designed to be installable, understandable, and useful without creating a new support burden.
+              The setup experience is built to be manageable for Salesforce teams without turning into another large implementation effort.
             </p>
           </div>
         </div>
@@ -571,9 +603,10 @@
       <div class="container two-col">
         <div>
           <div class="section-head">
+            <div class="section-kicker">Demo</div>
             <h2 class="section-title">See the product in action</h2>
             <p class="section-copy">
-              The experience is built around fast navigation, clear hierarchy context, and a clean card-based layout that makes organizational data easier to understand at a glance.
+              The experience is centered on fast navigation, clean presentation, and keeping surrounding hierarchy context visible while exploring a person or position.
             </p>
           </div>
 
@@ -587,14 +620,14 @@
               </iframe>
             </div>
           </div>
-          <p class="media-label">Short demo of Org Chart Explorer inside Salesforce.</p>
+          <p class="media-label">Short product walkthrough inside Salesforce.</p>
         </div>
 
         <div>
           <div class="card media-card">
             <img src="assets/tree_view.png" alt="Org Chart Explorer showing reports to, focus, direct reports, and additional reporting groups" />
           </div>
-          <p class="media-label">Navigate reporting chains, focus on a person or position, and explore surrounding hierarchy context.</p>
+          <p class="media-label">Explore reporting lines, focus on a node, and keep nearby organizational context visible.</p>
         </div>
       </div>
     </section>
@@ -602,9 +635,10 @@
     <section id="features">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-title">What makes the product easy to buy</h2>
+          <div class="section-kicker">Features</div>
+          <h2 class="section-title">Designed to be useful, not flashy</h2>
           <p class="section-copy">
-            Org Chart Explorer is not just an org chart screenshot. It is a configurable Salesforce product designed to help teams launch quickly and use it with confidence.
+            Org Chart Explorer is built around the parts that matter most: clear hierarchy navigation, readable profile cards, and setup controls that make sense to admins.
           </p>
         </div>
 
@@ -612,39 +646,39 @@
           <div class="card feature-card">
             <h3>Interactive hierarchy navigation</h3>
             <p>
-              Search by person or position, move through reporting lines, and keep surrounding context visible while exploring the structure.
+              Search by person or position and move through the org chart while keeping key context visible.
             </p>
             <ul>
               <li>Reporting chain visibility</li>
               <li>Focused card view</li>
               <li>Direct report navigation</li>
-              <li>Additional sibling context</li>
+              <li>Surrounding hierarchy context</li>
             </ul>
           </div>
 
           <div class="card feature-card">
-            <h3>Clean person and position cards</h3>
+            <h3>Clean card-based presentation</h3>
             <p>
-              Display the information users actually care about in a readable format that feels polished inside Salesforce.
+              Show the details people actually need in a layout that feels readable and professional inside Salesforce.
             </p>
             <ul>
-              <li>Name, title, department</li>
-              <li>Pronouns, location, phone, email</li>
+              <li>Name, title, and department</li>
+              <li>Pronouns, location, and contact info</li>
               <li>Photo support</li>
-              <li>Readable card-based layout</li>
+              <li>Polished node card design</li>
             </ul>
           </div>
 
           <div class="card feature-card">
-            <h3>Admin-friendly setup</h3>
+            <h3>Configuration for real admins</h3>
             <p>
-              Configure the hierarchy object and mapped fields without turning the product into a custom development project.
+              Map your object, parent relationship, and display fields without turning the app into a custom development project.
             </p>
             <ul>
               <li>Hierarchy object mapping</li>
-              <li>Parent relationship mapping</li>
+              <li>Parent relationship setup</li>
               <li>Display field configuration</li>
-              <li>Validation and link management tools</li>
+              <li>Validation and link tools</li>
             </ul>
           </div>
         </div>
@@ -657,14 +691,14 @@
           <div class="card media-card">
             <img src="assets/node_card.png" alt="Org Chart Explorer node card showing a highlighted executive card with contact details" />
           </div>
-          <p class="media-label">Card design that feels clear, professional, and usable for real organizational browsing.</p>
+          <p class="media-label">Readable node cards that support real browsing, not just static screenshots.</p>
         </div>
 
         <div>
           <div class="card media-card">
             <img src="assets/full_setup.png" alt="Org Chart Explorer setup page showing hierarchy configuration, display field mapping, and import tools" />
           </div>
-          <p class="media-label">Configuration experience built for admins who need control without unnecessary complexity.</p>
+          <p class="media-label">A setup experience built for control and clarity without unnecessary overhead.</p>
         </div>
       </div>
     </section>
@@ -672,9 +706,10 @@
     <section id="setup">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-title">Simple path from install to usable org chart</h2>
+          <div class="section-kicker">Setup</div>
+          <h2 class="section-title">A straightforward path from install to usable org chart</h2>
           <p class="section-copy">
-            The product is built to reduce friction. Instead of spending weeks building an internal org chart tool, teams can install, configure, import, and start exploring.
+            Instead of building an internal org chart solution from scratch, teams can install the app, configure the hierarchy, load data, and start exploring.
           </p>
         </div>
 
@@ -694,13 +729,13 @@
           <div class="card step-card">
             <div class="step-number">3</div>
             <h3>Load data</h3>
-            <p>Use your own hierarchy data or import data into the packaged position object using the provided tools.</p>
+            <p>Use your own hierarchy data or import data into the packaged position object using the included tools.</p>
           </div>
 
           <div class="card step-card">
             <div class="step-number">4</div>
             <h3>Explore</h3>
-            <p>Search people or positions, validate hierarchy structure, and launch a live org chart experience for your users.</p>
+            <p>Search people or positions, validate hierarchy structure, and launch a live org chart experience for users.</p>
           </div>
         </div>
       </div>
@@ -710,7 +745,7 @@
       <div class="container">
         <div class="card quote">
           <p>
-            <strong>Org Chart Explorer</strong> is built for teams that want the value of a polished Salesforce org chart experience without taking on the cost and maintenance burden of building one themselves.
+            <strong>Org Chart Explorer</strong> is built for Salesforce teams that want a credible, packaged org chart experience without taking on the cost and maintenance burden of building one themselves.
           </p>
         </div>
       </div>
@@ -720,9 +755,9 @@
       <div class="container">
         <div class="card cta">
           <div>
-            <h2>Ready to talk about Org Chart Explorer?</h2>
+            <h2>Interested in Org Chart Explorer?</h2>
             <p>
-              Whether you want to evaluate fit, ask questions, or discuss your Salesforce hierarchy use case, reach out and let’s talk through it.
+              Reach out to discuss fit, ask questions, or talk through your Salesforce hierarchy use case.
             </p>
           </div>
           <div>
